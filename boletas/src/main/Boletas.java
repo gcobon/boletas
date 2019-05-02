@@ -1,7 +1,10 @@
 
 package main;
 
-import modelo.conexionDB;
+import controlador.controladorRegistro;
+import modelo.consultas;
+import modelo.modeloRegistro;
+import vista.principal;
 
 /**
  *
@@ -13,8 +16,13 @@ public class Boletas {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        conexionDB con = new conexionDB();
-        con.conectar();
+        
+        consultas cons = new consultas();
+        modeloRegistro modelo = new modeloRegistro();
+        principal vista  = new principal();
+        
+        controladorRegistro control = new controladorRegistro(vista, modelo, cons);
+        control.Iniciar();
        
     }
     
