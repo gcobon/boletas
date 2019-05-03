@@ -171,7 +171,7 @@ public class consultas extends conexionDB {
 
             if (n == 1) {
                 Icon icono = new ImageIcon(getClass().getResource("/images/icons8-marca-de-verificación-32.png"));
-                JOptionPane.showMessageDialog(null, "Boleta Confirmada!", "Éxito", JOptionPane.OK_OPTION, icono);
+                JOptionPane.showMessageDialog(null, "Depósito Confirmado!", "Éxito", JOptionPane.OK_OPTION, icono);
             }
 
         } catch (SQLException e) {

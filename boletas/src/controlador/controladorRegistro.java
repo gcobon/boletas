@@ -32,6 +32,7 @@ public class controladorRegistro implements ActionListener {
         this.vista.btnBuscar.addActionListener(this);
         this.vista.menuEliminar.addActionListener(this);
         this.vista.menuConfirmar.addActionListener(this);
+        this.vista.txtFactura.addActionListener(this);
     }
 
     public void Iniciar() {
@@ -84,7 +85,6 @@ public class controladorRegistro implements ActionListener {
                 vista.fechaUso.setDatoFecha(null);
                 vista.txtAtendio.setText("");
                 //-------------------------------------------------
-
             }
         }
 
@@ -108,8 +108,8 @@ public class controladorRegistro implements ActionListener {
             int filaB = vista.tablaBusqueda.getSelectedRow();//obtiene el indice de la fila seleccionada en la tabla busqueda
 
             if (filaR != -1) {//si se ha seleccionado una fila en la tabla registros se ejecuta la condicion
-                
-                int x = JOptionPane.showConfirmDialog(null, "Seguro de eliminar?","?", 1, JOptionPane.QUESTION_MESSAGE, iconoQuestion);
+
+                int x = JOptionPane.showConfirmDialog(null, "Seguro de eliminar?", "?", 1, JOptionPane.QUESTION_MESSAGE, iconoQuestion);
                 if (x == 0) {
                     String codigo = (String) vista.tablaRegistros.getValueAt(filaR, 0);
                     consulta.BorrarRegistro(codigo);
@@ -117,8 +117,8 @@ public class controladorRegistro implements ActionListener {
                 }
 
             } else if (filaB != -1) {//si se ha seleccionado una fila en la tabla busqueda se ejecuta la condicion
-                
-                int x = JOptionPane.showConfirmDialog(null, "Seguro de eliminar?","?", 1, JOptionPane.QUESTION_MESSAGE, iconoQuestion);
+
+                int x = JOptionPane.showConfirmDialog(null, "Seguro de eliminar?", "?", 1, JOptionPane.QUESTION_MESSAGE, iconoQuestion);
                 if (x == 0) {
                     String codigo = (String) vista.tablaBusqueda.getValueAt(filaB, 0);
                     consulta.BorrarRegistro(codigo);
@@ -136,23 +136,27 @@ public class controladorRegistro implements ActionListener {
                 JOptionPane.showMessageDialog(null, "Seleccione una registro", "Alerta", JOptionPane.ERROR_MESSAGE, iconoError);
             }
         }
-        
-        if(vista.menuConfirmar == e.getSource()){
+
+        if (vista.menuConfirmar == e.getSource()) {
             int filaR = vista.tablaRegistros.getSelectedRow();//obtiene el indice de la fila seleccionada en la tabla registros
             int filaB = vista.tablaBusqueda.getSelectedRow();//obtiene el indice de la fila seleccionada en la tabla busqueda
 
             if (filaR != -1) {//si se ha seleccionado una fila en la tabla registros se ejecuta la condicion
-                
-                
-                    String codigo = (String) vista.tablaRegistros.getValueAt(filaR, 0);
+
+                String codigo = (String) vista.tablaRegistros.getValueAt(filaR, 0);
+
+                int x = JOptionPane.showConfirmDialog(null, "Desea confirmar depósito?", "?", 1, JOptionPane.QUESTION_MESSAGE, iconoQuestion);
+                if (x == 0) {
                     consulta.ConfirmarBoleta(vista.tablaRegistros, codigo);
                     consulta.MostrarRegistros(vista.tablaRegistros);
-                
+                }
 
             } else if (filaB != -1) {//si se ha seleccionado una fila en la tabla busqueda se ejecuta la condicion
-                
-                
-                    String codigo = (String) vista.tablaBusqueda.getValueAt(filaB, 0);
+
+                String codigo = (String) vista.tablaBusqueda.getValueAt(filaB, 0);
+
+                int x = JOptionPane.showConfirmDialog(null, "Desea confirmar depósito?", "?", 1, JOptionPane.QUESTION_MESSAGE, iconoQuestion);
+                if (x == 0) {
                     consulta.ConfirmarBoleta(vista.tablaBusqueda, codigo);
 
                     Date dateIni = vista.fechaInicial.getDatoFecha(); //se obtiene la fecha inicial ingresada 
@@ -163,10 +167,14 @@ public class controladorRegistro implements ActionListener {
                     String fechaFin = sdf.format(dateFin);// se convierte a estring la fecha ingresada
 
                     consulta.BuscarRegistros(vista.tablaBusqueda, fechaIni, fechaFin);//muestra los registros buscados 
-                
+                }
+
             } else {
                 JOptionPane.showMessageDialog(null, "Seleccione una registro", "Alerta", JOptionPane.ERROR_MESSAGE, iconoError);
             }
+        }
+        if (vista.txtFactura == e.getSource()) {
+            vista.btnGuardar.doClick();
         }
     }
 
