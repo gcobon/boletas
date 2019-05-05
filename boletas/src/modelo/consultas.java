@@ -23,7 +23,6 @@ public class consultas extends conexionDB {
     Icon iconoCorrecto = new ImageIcon(getClass().getResource("/images/icons8-marca-de-verificación-32.png"));
     Icon iconoQuestion = new ImageIcon(getClass().getResource("/images/icons8-pregunta-32.png"));
     Icon iconoEliminado = new ImageIcon(getClass().getResource("/images/icons8-eliminar-32.png"));
-    
 
     public void MostrarRegistros(RSTableMetro tablaRegistros) {
         modelo = (DefaultTableModel) tablaRegistros.getModel();
@@ -53,15 +52,14 @@ public class consultas extends conexionDB {
                 datos[9] = rst.getString(10);
                 datos[10] = rst.getString(11);
                 datos[11] = rst.getString(12);
-                
-                
+
                 modelo.addRow(datos);
             }
-             
+
             conexion = Desconectar();
 
         } catch (SQLException e) {
-            JOptionPane.showMessageDialog(null, "Error al mostrar " + e , "Error", JOptionPane.ERROR_MESSAGE, iconoError);
+            JOptionPane.showMessageDialog(null, "Error al mostrar " + e, "Error", JOptionPane.ERROR_MESSAGE, iconoError);
         }
     }
 
@@ -176,15 +174,15 @@ public class consultas extends conexionDB {
             JOptionPane.showMessageDialog(null, "Error al confirmar " + e, "Error", JOptionPane.ERROR_MESSAGE, iconoError);
         }
     }
-    
-    public void ModificarRegistro(modeloRegistro modelo, Integer codigo){
-        
+
+    public void ModificarRegistro(modeloRegistro modelo, Integer codigo) {
+
         sql = "UPDATE boletas.boleta set banco = ?, boleta = ?, valor = ?, factura = ?, cliente = ?, telefono = ?, fechaUso = ?, hora = ?, atendio= ? WHERE codigo = ?";
 
         try {
             conexion = Conectar();
             PreparedStatement pst = conexion.prepareStatement(sql);
-            
+
             pst.setString(1, modelo.getBanco());
             pst.setString(2, modelo.getBoleta());
             pst.setFloat(3, modelo.getValor());
@@ -209,5 +207,49 @@ public class consultas extends conexionDB {
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, "Error al Modificar " + e, "Error", JOptionPane.ERROR_MESSAGE, iconoError);
         }
+    }
+
+    public String Estado(String codigo) {
+
+        String estado = null;
+
+        sql = "SELECT estado FROM boleta WHERE codigo = '" + codigo + "'";
+
+        try {
+            conexion = Conectar();
+            PreparedStatement pst = conexion.prepareStatement(sql);
+            ResultSet rst = pst.executeQuery();
+
+            while(rst.next()){
+                estado = rst.getString(1);
+            }
+            
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "Error al confirmar " + e, "Error", JOptionPane.ERROR_MESSAGE, iconoError);
+        }
+        return estado;
+
+    }
+    
+    public String Boleta(String newBoleta, String banco) {
+
+        String boleta = null;
+
+        sql = "SELECT boleta FROM boleta WHERE boleta = '"+newBoleta+"' AND banco = '"+banco+"'";
+
+        try {
+            conexion = Conectar();
+            PreparedStatement pst = conexion.prepareStatement(sql);
+            ResultSet rst = pst.executeQuery();
+
+            while(rst.next()){
+                boleta = rst.getString(1);
+            }
+            
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "Error al confirmar " + e, "Error", JOptionPane.ERROR_MESSAGE, iconoError);
+        }
+        return boleta;
+
     }
 }
