@@ -5,8 +5,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import javax.swing.JOptionPane;
-import javax.swing.JTable;
-import javax.swing.plaf.IconUIResource;
 import javax.swing.table.DefaultTableModel;
 import rojerusan.RSTableMetro;
 import javax.swing.Icon;
@@ -176,6 +174,40 @@ public class consultas extends conexionDB {
 
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, "Error al confirmar " + e, "Error", JOptionPane.ERROR_MESSAGE, iconoError);
+        }
+    }
+    
+    public void ModificarRegistro(modeloRegistro modelo, Integer codigo){
+        
+        sql = "UPDATE boletas.boleta set banco = ?, boleta = ?, valor = ?, factura = ?, cliente = ?, telefono = ?, fechaUso = ?, hora = ?, atendio= ? WHERE codigo = ?";
+
+        try {
+            conexion = Conectar();
+            PreparedStatement pst = conexion.prepareStatement(sql);
+            
+            pst.setString(1, modelo.getBanco());
+            pst.setString(2, modelo.getBoleta());
+            pst.setFloat(3, modelo.getValor());
+            pst.setInt(4, modelo.getFactura());
+            pst.setString(5, modelo.getCliente());
+            pst.setInt(6, modelo.getTelefono());
+            pst.setString(7, modelo.getFechaUso());
+            pst.setString(8, modelo.getHora());
+            pst.setString(9, modelo.getAtendio());
+            pst.setInt(10, codigo);
+
+            int n = pst.executeUpdate();
+
+            if (n == 1) {
+                JOptionPane.showMessageDialog(null, "Modificado Correctamente", "Exito", JOptionPane.OK_OPTION, iconoCorrecto);
+            } else {
+                JOptionPane.showMessageDialog(null, "Error al Modificar", "Error", JOptionPane.ERROR_MESSAGE, iconoError);
+            }
+
+            conexion = Desconectar();
+
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "Error al Modificar " + e, "Error", JOptionPane.ERROR_MESSAGE, iconoError);
         }
     }
 }

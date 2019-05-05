@@ -82,7 +82,7 @@ public class principal extends javax.swing.JFrame {
         jLabel13 = new javax.swing.JLabel();
 
         menuConfirmar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/icons8-marca-de-verificación-32.png"))); // NOI18N
-        menuConfirmar.setText("Confirmar Deposito");
+        menuConfirmar.setText("Confirmar Depósito");
         popRegistros.add(menuConfirmar);
 
         menuModificar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/icons8-actualizar-32.png"))); // NOI18N
@@ -297,11 +297,11 @@ public class principal extends javax.swing.JFrame {
         rSPanelGradiente1.setLayout(rSPanelGradiente1Layout);
         rSPanelGradiente1Layout.setHorizontalGroup(
             rSPanelGradiente1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(rSPanelGradiente1Layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, rSPanelGradiente1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(rSPanelGradiente1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel15, javax.swing.GroupLayout.DEFAULT_SIZE, 1030, Short.MAX_VALUE)
-                    .addComponent(jLabel16, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(rSPanelGradiente1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel16, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel15, javax.swing.GroupLayout.DEFAULT_SIZE, 748, Short.MAX_VALUE))
                 .addContainerGap())
         );
         rSPanelGradiente1Layout.setVerticalGroup(
@@ -310,8 +310,8 @@ public class principal extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel15)
                 .addGap(18, 18, 18)
-                .addComponent(jLabel16, javax.swing.GroupLayout.PREFERRED_SIZE, 519, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addComponent(jLabel16, javax.swing.GroupLayout.PREFERRED_SIZE, 417, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(114, 114, 114))
         );
 
         javax.swing.GroupLayout panelBienvenidaLayout = new javax.swing.GroupLayout(panelBienvenida);
@@ -322,7 +322,7 @@ public class principal extends javax.swing.JFrame {
         );
         panelBienvenidaLayout.setVerticalGroup(
             panelBienvenidaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(rSPanelGradiente1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(rSPanelGradiente1, javax.swing.GroupLayout.PREFERRED_SIZE, 552, Short.MAX_VALUE)
         );
 
         panelEscritorio.add(panelBienvenida, "card5");
@@ -475,7 +475,7 @@ public class principal extends javax.swing.JFrame {
                                 .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(txtValor, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addContainerGap(500, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         vistaAgregarRegistroLayout.setVerticalGroup(
             vistaAgregarRegistroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -542,7 +542,7 @@ public class principal extends javax.swing.JFrame {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel10, javax.swing.GroupLayout.DEFAULT_SIZE, 1030, Short.MAX_VALUE)
+                .addComponent(jLabel10, javax.swing.GroupLayout.DEFAULT_SIZE, 748, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
@@ -560,7 +560,7 @@ public class principal extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Registro No.", "Fecha Registro", "Bco-Cuenta", "Boleta", "Valor", "Factura", "Cliente", "Teléfono", "Fecha Uso", "Hora Uso", "Responsable", "Estado"
+                "Registro No.", "Fecha Registro", "Boleta", "Bco-Cuenta", "Valor", "Factura", "Cliente", "Teléfono", "Fecha Uso", "Hora Uso", "Responsable", "Estado"
             }
         ) {
             boolean[] canEdit = new boolean [] {
@@ -581,7 +581,6 @@ public class principal extends javax.swing.JFrame {
         tablaRegistros.setFuenteHead(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
         tablaRegistros.setGrosorBordeFilas(0);
         tablaRegistros.setGrosorBordeHead(0);
-        tablaRegistros.setShowGrid(false);
         jScrollPane1.setViewportView(tablaRegistros);
 
         javax.swing.GroupLayout vistaRegistroLayout = new javax.swing.GroupLayout(vistaRegistro);
@@ -596,7 +595,7 @@ public class principal extends javax.swing.JFrame {
             .addGroup(vistaRegistroLayout.createSequentialGroup()
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 608, Short.MAX_VALUE))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 499, Short.MAX_VALUE))
         );
 
         panelEscritorio.add(vistaRegistro, "card3");
@@ -633,7 +632,7 @@ public class principal extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Registro No.", "Fecha Registro", "Bco-Cuenta", "Boleta", "Valor", "Factura", "Cliente", "Teléfono", "Fecha Uso", "Hora Uso", "Responsable", "Estado"
+                "Registro No.", "Fecha Registro", "Boleta", "Bco-Cuenta", "Valor", "Factura", "Cliente", "Teléfono", "Fecha Uso", "Hora Uso", "Responsable", "Estado"
             }
         ) {
             Class[] types = new Class [] {
@@ -692,7 +691,7 @@ public class principal extends javax.swing.JFrame {
         vistaBusquedaLayout.setHorizontalGroup(
             vistaBusquedaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 1054, Short.MAX_VALUE)
+            .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 772, Short.MAX_VALUE)
             .addGroup(vistaBusquedaLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(vistaBusquedaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
@@ -720,7 +719,7 @@ public class principal extends javax.swing.JFrame {
                     .addComponent(btnBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(fechaFinal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 528, Short.MAX_VALUE))
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 419, Short.MAX_VALUE))
         );
 
         panelEscritorio.add(vistaBusqueda, "card4");
@@ -741,8 +740,8 @@ public class principal extends javax.swing.JFrame {
                 .addGap(0, 0, 0)
                 .addComponent(panelEncabezado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGroup(panelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(panelMenu, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(panelEscritorio, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addComponent(panelEscritorio, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(panelMenu, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -778,6 +777,8 @@ public class principal extends javax.swing.JFrame {
         panelEscritorio.repaint();
         panelEscritorio.revalidate();
         panelEscritorio.add(vistaAgregarRegistro);
+        
+        btnGuardar.setText("GUARDAR");
     }//GEN-LAST:event_btnAgregarActionPerformed
 
     private void btnBusquedaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBusquedaActionPerformed
