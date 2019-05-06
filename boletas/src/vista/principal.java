@@ -260,10 +260,10 @@ public class principal extends javax.swing.JFrame {
             }
         });
 
-        jLabel19.setFont(new java.awt.Font("Dialog", 0, 10)); // NOI18N
+        jLabel19.setFont(new java.awt.Font("Dialog", 0, 9)); // NOI18N
         jLabel19.setText("Credits: Gudiel Cobón");
 
-        jLabel20.setFont(new java.awt.Font("Dialog", 0, 10)); // NOI18N
+        jLabel20.setFont(new java.awt.Font("Dialog", 0, 9)); // NOI18N
         jLabel20.setText("Contact: gudielcobon@gmail.com");
 
         javax.swing.GroupLayout panelMenuLayout = new javax.swing.GroupLayout(panelMenu);
