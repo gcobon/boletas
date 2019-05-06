@@ -15,4 +15,11 @@ create table boleta
     estado        varchar(20) null
 );
 
+create table contrasena
+(
+    codigo   int auto_increment
+        primary key,
+    password varchar(35) not null
+);
+
 
