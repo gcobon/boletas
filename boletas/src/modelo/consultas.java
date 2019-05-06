@@ -19,10 +19,10 @@ public class consultas extends conexionDB {
     Connection conexion;
     String sql;
     DefaultTableModel modelo;
-    Icon iconoError = new ImageIcon(getClass().getResource("/images/icons8-error-32.png"));
-    Icon iconoCorrecto = new ImageIcon(getClass().getResource("/images/icons8-marca-de-verificación-32.png"));
-    Icon iconoQuestion = new ImageIcon(getClass().getResource("/images/icons8-pregunta-32.png"));
-    Icon iconoEliminado = new ImageIcon(getClass().getResource("/images/icons8-eliminar-32.png"));
+    Icon iconoError = new ImageIcon(getClass().getResource("/images/icons8-error-64.png"));
+    Icon iconoCorrecto = new ImageIcon(getClass().getResource("/images/icons8-de-acuerdo-64.png"));
+    Icon iconoQuestion = new ImageIcon(getClass().getResource("/images/icons8-ayuda-64.png"));
+    //Icon iconoEliminado = new ImageIcon(getClass().getResource("/images/icons8-eliminar-32.png"));
 
     public void MostrarRegistros(RSTableMetro tablaRegistros) {
         modelo = (DefaultTableModel) tablaRegistros.getModel();
@@ -71,6 +71,7 @@ public class consultas extends conexionDB {
         }
 
         String[] datos = new String[12];
+        
         sql = "SELECT * from boletas.boleta WHERE fechaRegistro BETWEEN '" + fechaIni + "' AND '" + fechaFin + "'";
 
         try {
@@ -98,7 +99,47 @@ public class consultas extends conexionDB {
             conexion = Desconectar();
 
         } catch (SQLException e) {
-            JOptionPane.showMessageDialog(null, "Error al mostrar " + e, "Error", JOptionPane.ERROR_MESSAGE, iconoError);
+            JOptionPane.showMessageDialog(null, "Error al buscar " + e, "Error", JOptionPane.ERROR_MESSAGE, iconoError);
+        }
+    }
+    
+    public void BuscarPorBoleta(RSTableMetro tablaRegistros, String boleta) {
+        modelo = (DefaultTableModel) tablaRegistros.getModel();
+
+        while (modelo.getRowCount() > 0) {
+            modelo.removeRow(0);
+        }
+
+        String[] datos = new String[12];
+        
+        sql = "SELECT * FROM boleta WHERE boleta = '" + boleta + "'";
+
+        try {
+            conexion = Conectar();
+            PreparedStatement pst = conexion.prepareStatement(sql);
+            ResultSet rst = pst.executeQuery();
+
+            while (rst.next()) {
+                datos[0] = rst.getString(1);
+                datos[1] = rst.getString(2);
+                datos[2] = rst.getString(3);
+                datos[3] = rst.getString(4);
+                datos[4] = rst.getString(5);
+                datos[5] = rst.getString(6);
+                datos[6] = rst.getString(7);
+                datos[7] = rst.getString(8);
+                datos[8] = rst.getString(9);
+                datos[9] = rst.getString(10);
+                datos[10] = rst.getString(11);
+                datos[11] = rst.getString(12);
+
+                modelo.addRow(datos);
+            }
+
+            conexion = Desconectar();
+
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "Error al buscar " + e, "Error", JOptionPane.ERROR_MESSAGE, iconoError);
         }
     }
 
@@ -147,15 +188,17 @@ public class consultas extends conexionDB {
             int n = pst.executeUpdate();
 
             if (n == 1) {
-                JOptionPane.showMessageDialog(null, "Registro eliminado!", "Éxito", JOptionPane.OK_OPTION, iconoEliminado);
+                JOptionPane.showMessageDialog(null, "Registro eliminado!", "Éxito", JOptionPane.OK_OPTION, iconoCorrecto);
             }
+            
+            conexion = Desconectar();
 
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, "Error al eliminar " + e, "Error", JOptionPane.ERROR_MESSAGE, iconoError);
         }
     }
 
-    public void ConfirmarBoleta(RSTableMetro tabla, String codigo) {
+    public void ConfirmarBoleta(String codigo) {
 
         sql = "UPDATE boletas.boleta SET estado = 'CONFIRMADA' WHERE codigo = " + codigo + "";
 
@@ -166,10 +209,11 @@ public class consultas extends conexionDB {
             int n = pst.executeUpdate();
 
             if (n == 1) {
-                Icon icono = new ImageIcon(getClass().getResource("/images/icons8-marca-de-verificación-32.png"));
-                JOptionPane.showMessageDialog(null, "Depósito Confirmado!", "Éxito", JOptionPane.OK_OPTION, icono);
+                
+                JOptionPane.showMessageDialog(null, "Depósito Confirmado!", "Éxito", JOptionPane.OK_OPTION, iconoCorrecto);
             }
-
+            conexion = Desconectar();
+            
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, "Error al confirmar " + e, "Error", JOptionPane.ERROR_MESSAGE, iconoError);
         }
@@ -177,22 +221,21 @@ public class consultas extends conexionDB {
 
     public void ModificarRegistro(modeloRegistro modelo, Integer codigo) {
 
-        sql = "UPDATE boletas.boleta set banco = ?, boleta = ?, valor = ?, factura = ?, cliente = ?, telefono = ?, fechaUso = ?, hora = ?, atendio= ? WHERE codigo = ?";
+        sql = "UPDATE boletas.boleta set banco = ?, valor = ?, factura = ?, cliente = ?, telefono = ?, fechaUso = ?, hora = ?, atendio= ? WHERE codigo = ?";
 
         try {
             conexion = Conectar();
             PreparedStatement pst = conexion.prepareStatement(sql);
 
             pst.setString(1, modelo.getBanco());
-            pst.setString(2, modelo.getBoleta());
-            pst.setFloat(3, modelo.getValor());
-            pst.setInt(4, modelo.getFactura());
-            pst.setString(5, modelo.getCliente());
-            pst.setInt(6, modelo.getTelefono());
-            pst.setString(7, modelo.getFechaUso());
-            pst.setString(8, modelo.getHora());
-            pst.setString(9, modelo.getAtendio());
-            pst.setInt(10, codigo);
+            pst.setFloat(2, modelo.getValor());
+            pst.setInt(3, modelo.getFactura());
+            pst.setString(4, modelo.getCliente());
+            pst.setInt(5, modelo.getTelefono());
+            pst.setString(6, modelo.getFechaUso());
+            pst.setString(7, modelo.getHora());
+            pst.setString(8, modelo.getAtendio());
+            pst.setInt(9, codigo);
 
             int n = pst.executeUpdate();
 
@@ -224,18 +267,19 @@ public class consultas extends conexionDB {
                 estado = rst.getString(1);
             }
             
+            conexion = Desconectar();
+            
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, "Error al confirmar " + e, "Error", JOptionPane.ERROR_MESSAGE, iconoError);
         }
         return estado;
-
     }
     
-    public String Boleta(String newBoleta, String banco) {
+    public String Boleta(String newBoleta) {
 
         String boleta = null;
 
-        sql = "SELECT boleta FROM boleta WHERE boleta = '"+newBoleta+"' AND banco = '"+banco+"'";
+        sql = "SELECT boleta FROM boleta WHERE boleta = '"+newBoleta+"'";
 
         try {
             conexion = Conectar();
@@ -246,10 +290,35 @@ public class consultas extends conexionDB {
                 boleta = rst.getString(1);
             }
             
+            conexion = Desconectar();
+            
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, "Error al confirmar " + e, "Error", JOptionPane.ERROR_MESSAGE, iconoError);
         }
         return boleta;
 
+    }
+    
+    public String password(String contra) {
+
+        String pass = null;
+
+        sql = "SELECT password FROM contrasena WHERE password = '"+contra+"'";
+
+        try {
+            conexion = Conectar();
+            PreparedStatement pst = conexion.prepareStatement(sql);
+            ResultSet rst = pst.executeQuery();
+
+            while(rst.next()){
+                pass = rst.getString(1);
+            }
+            
+            conexion = Desconectar();
+            
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "Error al confirmar " + e, "Error", JOptionPane.ERROR_MESSAGE, iconoError);
+        }
+        return pass;
     }
 }

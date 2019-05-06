@@ -9,9 +9,11 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import modelo.consultas;
 import modelo.modeloRegistro;
+import vista.password;
 import vista.principal;
 
 /**
@@ -24,9 +26,10 @@ public class controladorRegistro implements ActionListener {
     private final modeloRegistro modelo;
     private final consultas consulta;
     private Integer codigoMoficar;
-    Icon iconoQuestion = new ImageIcon(getClass().getResource("/images/icons8-pregunta-32.png"));
-    Icon iconoError = new ImageIcon(getClass().getResource("/images/icons8-error-32.png"));
-    Icon iconoInfo = new ImageIcon(getClass().getResource("/images/icons8-acerca-de-32.png"));
+
+    Icon iconoError = new ImageIcon(getClass().getResource("/images/icons8-error-64.png"));
+    Icon iconoCorrecto = new ImageIcon(getClass().getResource("/images/icons8-de-acuerdo-64.png"));
+    Icon iconoInfo = new ImageIcon(getClass().getResource("/images/icons8-ayuda-64.png"));
 
     public controladorRegistro(principal vista, modeloRegistro modelo, consultas consultas) {
         this.vista = vista;
@@ -34,9 +37,11 @@ public class controladorRegistro implements ActionListener {
         this.consulta = consultas;
         this.vista.btnGuardar.addActionListener(this);
         this.vista.btnBuscar.addActionListener(this);
+        this.vista.btnCancelarRegistro.addActionListener(this);
         this.vista.menuEliminar.addActionListener(this);
         this.vista.menuConfirmar.addActionListener(this);
         this.vista.txtFactura.addActionListener(this);
+        this.vista.txtBuscarBoleta.addActionListener(this);
         this.vista.menuModificar.addActionListener(this);
     }
 
@@ -55,7 +60,7 @@ public class controladorRegistro implements ActionListener {
                         || vista.txtFactura.getText().equals("")) {
                     JOptionPane.showMessageDialog(null, "Debe llenar todos los campos", "Atención", JOptionPane.INFORMATION_MESSAGE, iconoInfo);
                 } else {
-                    String boleta = consulta.Boleta(vista.txtBoleta.getText().trim(), (String) vista.cbxBanco.getSelectedItem());//consulta a la base de datos si existe en numero de boleta ingresada, sino existe retorna null.
+                    String boleta = consulta.Boleta(vista.txtBoleta.getText().trim());//consulta a la base de datos si existe en numero de boleta ingresada, sino existe retorna null.
 
                     if (boleta != null) {
                         JOptionPane.showMessageDialog(null, "El numero de boleta que desea registrar ya existe!", "Atención", JOptionPane.INFORMATION_MESSAGE, iconoError);
@@ -101,9 +106,11 @@ public class controladorRegistro implements ActionListener {
             }
             if (vista.btnGuardar.getText().equals("MODIFICAR")) {
 
-                String boleta = consulta.Boleta(vista.txtBoleta.getText().trim(), (String) vista.cbxBanco.getSelectedItem());//consulta a la base de datos si existe en numero de boleta ingresada, sino existe retorna null.
-
-                if (boleta != null) {
+//                String boleta = consulta.Boleta(vista.txtBoleta.getText().trim());//consulta a la base de datos si existe en numero de boleta ingresada, sino existe retorna null.
+//
+//                if (boleta != null) {
+//                    JOptionPane.showMessageDialog(null, "El numero de boleta que desea registrar ya existe!", "Atención", JOptionPane.INFORMATION_MESSAGE, iconoError);
+//                } else {
                     modelo.setBanco((String) vista.cbxBanco.getSelectedItem());
                     modelo.setAtendio(vista.txtAtendio.getText().trim());
                     modelo.setBoleta(vista.txtBoleta.getText().trim());
@@ -139,16 +146,18 @@ public class controladorRegistro implements ActionListener {
                     vista.fechaUso.setDatoFecha(null);
                     vista.txtAtendio.setText("");
                     //-------------------------------------------------
-                } else {
-                    JOptionPane.showMessageDialog(null, "El numero de boleta que desea registrar ya existe!", "Atención", JOptionPane.INFORMATION_MESSAGE, iconoError);
-                }
+//                }
             }
 
             if (vista.btnGuardar.getText().equals("MODIFICAR EN BUSQUEDA")) {
 
-                String boleta = consulta.Boleta(vista.txtBoleta.getText().trim(), (String) vista.cbxBanco.getSelectedItem());//consulta a la base de datos si existe en numero de boleta ingresada, sino existe retorna null.
+//                String boleta = consulta.Boleta(vista.txtBoleta.getText().trim());//consulta a la base de datos si existe en numero de boleta ingresada, sino existe retorna null.
+//
+//                if (boleta != null) {
+//                    JOptionPane.showMessageDialog(null, "El numero de boleta que desea registrar ya existe!", "Atención", JOptionPane.INFORMATION_MESSAGE, iconoError);
+//
+//                } else {
 
-                if (boleta != null) {
                     modelo.setBanco((String) vista.cbxBanco.getSelectedItem());
                     modelo.setAtendio(vista.txtAtendio.getText().trim());
                     modelo.setBoleta(vista.txtBoleta.getText().trim());
@@ -190,14 +199,13 @@ public class controladorRegistro implements ActionListener {
                     vista.fechaUso.setDatoFecha(null);
                     vista.txtAtendio.setText("");
                     //-------------------------------------------------
-                } else {
-                    JOptionPane.showMessageDialog(null, "El numero de boleta que desea registrar ya existe!", "Atención", JOptionPane.INFORMATION_MESSAGE, iconoError);
                 }
-            }
-            
+//            }
+
         }
 
         if (vista.btnBuscar == e.getSource()) {
+
             if (vista.fechaInicial.getDatoFecha() == null || vista.fechaFinal.getDatoFecha() == null) {
                 JOptionPane.showMessageDialog(null, "Seleccione fecha inicial y fecha final de busqueda", "Atención", JOptionPane.INFORMATION_MESSAGE, iconoInfo);
             } else {
@@ -213,12 +221,13 @@ public class controladorRegistro implements ActionListener {
         }
 
         if (vista.menuEliminar == e.getSource()) {
+
             int filaR = vista.tablaRegistros.getSelectedRow();//obtiene el indice de la fila seleccionada en la tabla registros
             int filaB = vista.tablaBusqueda.getSelectedRow();//obtiene el indice de la fila seleccionada en la tabla busqueda
 
             if (filaR != -1) {//si se ha seleccionado una fila en la tabla registros se ejecuta la condicion
 
-                int x = JOptionPane.showConfirmDialog(null, "Seguro de eliminar?", "?", 1, JOptionPane.QUESTION_MESSAGE, iconoQuestion);
+                int x = JOptionPane.showConfirmDialog(null, "Seguro de eliminar?", "?", 1, JOptionPane.QUESTION_MESSAGE, iconoInfo);
                 if (x == 0) {
                     String codigo = (String) vista.tablaRegistros.getValueAt(filaR, 0);
                     consulta.BorrarRegistro(codigo);
@@ -227,7 +236,7 @@ public class controladorRegistro implements ActionListener {
 
             } else if (filaB != -1) {//si se ha seleccionado una fila en la tabla busqueda se ejecuta la condicion
 
-                int x = JOptionPane.showConfirmDialog(null, "Seguro de eliminar?", "?", 1, JOptionPane.QUESTION_MESSAGE, iconoQuestion);
+                int x = JOptionPane.showConfirmDialog(null, "Seguro de eliminar?", "?", 1, JOptionPane.QUESTION_MESSAGE, iconoInfo);
                 if (x == 0) {
                     String codigo = (String) vista.tablaBusqueda.getValueAt(filaB, 0);
                     consulta.BorrarRegistro(codigo);
@@ -247,39 +256,48 @@ public class controladorRegistro implements ActionListener {
         }
 
         if (vista.menuConfirmar == e.getSource()) {
+
             int filaR = vista.tablaRegistros.getSelectedRow();//obtiene el indice de la fila seleccionada en la tabla registros
             int filaB = vista.tablaBusqueda.getSelectedRow();//obtiene el indice de la fila seleccionada en la tabla busqueda
 
             if (filaR != -1) {//si se ha seleccionado una fila en la tabla registros se ejecuta la condicion
 
-                String codigo = (String) vista.tablaRegistros.getValueAt(filaR, 0);
+                String codigo = (String) vista.tablaRegistros.getValueAt(filaR, 0);//obtiene el codigo de la fila seleccionada
 
-                int x = JOptionPane.showConfirmDialog(null, "Desea confirmar depósito?", "?", 1, JOptionPane.QUESTION_MESSAGE, iconoQuestion);
+                int x = JOptionPane.showConfirmDialog(null, "Desea confirmar depósito?", "?", 1, JOptionPane.QUESTION_MESSAGE, iconoInfo);//muestra la ventana de confirmacion de boleta
                 if (x == 0) {
 
                     String estado = consulta.Estado(codigo);//obtiene esl estado del deposito consultando a la base de datos
 
-                    if (null != estado && estado.equals("CONFIRMADA")) {//
+                    if (null != estado && estado.equals("CONFIRMADA")) {//si la boleta esta confirmada muestra una alerta dentro de este condicional
                         JOptionPane.showMessageDialog(null, "Depósito ya confirmado!", "Atención", 0, iconoInfo);
                     } else {
-                        consulta.ConfirmarBoleta(vista.tablaRegistros, codigo);
-                        consulta.MostrarRegistros(vista.tablaRegistros);
+                        //Muestra una pequeña ventana de dialogo en la cual se pide la contraseña para confirmar la boleta registrada
+                        password dialog = new password(new JFrame(), true);
+                        controladorPassword cont = new controladorPassword(dialog, consulta, codigo);
+                        cont.Iniciar();
+                        //------------------------------------------------------------------------------------------------------------
+                        consulta.MostrarRegistros(vista.tablaRegistros);//actualiza la tabla de registros
                     }
                 }
 
             } else if (filaB != -1) {//si se ha seleccionado una fila en la tabla busqueda se ejecuta la condicion
 
-                String codigo = (String) vista.tablaBusqueda.getValueAt(filaB, 0);
+                String codigo = (String) vista.tablaBusqueda.getValueAt(filaB, 0);//se obtiene el codigo del registro seleccionado en la tabla
 
-                int x = JOptionPane.showConfirmDialog(null, "Desea confirmar depósito?", "?", 1, JOptionPane.QUESTION_MESSAGE, iconoQuestion);
+                int x = JOptionPane.showConfirmDialog(null, "Desea confirmar depósito?", "?", 1, JOptionPane.QUESTION_MESSAGE, iconoInfo);//pregunta si se desea confirmar el deposito
                 if (x == 0) {
 
                     String estado = consulta.Estado(codigo);//obtiene esl estado del deposito consultando a la base de datos
 
-                    if (null != estado && estado.equals("CONFIRMADA")) {//
+                    if (null != estado && estado.equals("CONFIRMADA")) {//si la boleta esta confirmada muestra una alerta dentro de este condicional
                         JOptionPane.showMessageDialog(null, "Depósito ya confirmado!", "Atención", 0, iconoInfo);
                     } else {
-                        consulta.ConfirmarBoleta(vista.tablaBusqueda, codigo);
+                        //Muestra una pequeña ventana de dialogo en la cual se pide la contraseña para confirmar la boleta registrada
+                        password dialog = new password(new JFrame(), true);
+                        controladorPassword cont = new controladorPassword(dialog, consulta, codigo);
+                        cont.Iniciar();
+                        //------------------------------------------------------------------------------------------------------------
 
                         Date dateIni = vista.fechaInicial.getDatoFecha(); //se obtiene la fecha inicial ingresada 
                         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");//se le da formato a la fecha ingresada
@@ -288,7 +306,7 @@ public class controladorRegistro implements ActionListener {
                         Date dateFin = vista.fechaFinal.getDatoFecha(); //se obtiene la fecha final ingresada
                         String fechaFin = sdf.format(dateFin);// se convierte a estring la fecha ingresada
 
-                        consulta.BuscarRegistros(vista.tablaBusqueda, fechaIni, fechaFin);//muestra los registros buscados 
+                        consulta.BuscarRegistros(vista.tablaBusqueda, fechaIni, fechaFin);//actualiza los registros buscados 
                     }
                 }
 
@@ -322,6 +340,7 @@ public class controladorRegistro implements ActionListener {
                     vista.fechaUso.setDatoFecha(fecha);
                     vista.txtHora.setText((String) vista.tablaRegistros.getValueAt(filaR, 9));
                     vista.txtAtendio.setText((String) vista.tablaRegistros.getValueAt(filaR, 10));
+                    vista.txtBoleta.setEnabled(false);
 
                     vista.panelEscritorio.removeAll();
                     vista.panelEscritorio.repaint();
@@ -354,6 +373,7 @@ public class controladorRegistro implements ActionListener {
                     vista.fechaUso.setDatoFecha(fecha);
                     vista.txtHora.setText((String) vista.tablaBusqueda.getValueAt(filaB, 9));
                     vista.txtAtendio.setText((String) vista.tablaBusqueda.getValueAt(filaB, 10));
+                    vista.txtBoleta.setEnabled(false);
 
                     vista.panelEscritorio.removeAll();
                     vista.panelEscritorio.repaint();
@@ -370,9 +390,38 @@ public class controladorRegistro implements ActionListener {
                 JOptionPane.showMessageDialog(null, "Seleccione una registro", "Alerta", JOptionPane.ERROR_MESSAGE, iconoError);
             }
         }
+
         if (vista.txtFactura == e.getSource()) {
             vista.btnGuardar.doClick();
         }
+
+        if (vista.txtBuscarBoleta == e.getSource()) {
+
+            String boleta = vista.txtBuscarBoleta.getText();
+            consulta.BuscarPorBoleta(vista.tablaBusqueda, boleta);
+        }
+
+        if (vista.btnCancelarRegistro == e.getSource()) {
+            
+            //------- limpia los campos del registro----------
+            vista.cbxBanco.setSelectedIndex(0);
+            vista.txtBoleta.setText("");
+            vista.txtValor.setText("");
+            vista.txtCliente.setText("");
+            vista.txtFactura.setText("");
+            vista.txtHora.setText("");
+            vista.txtTelefono.setText("");
+            vista.fechaUso.setDatoFecha(null);
+            vista.txtAtendio.setText("");
+            //-------------------------------------------------
+            
+            vista.panelEscritorio.removeAll();
+            vista.panelEscritorio.repaint();
+            vista.panelEscritorio.revalidate();
+            vista.panelEscritorio.add(vista.panelBienvenida);
+            
+        }
+
     }
 
 }
