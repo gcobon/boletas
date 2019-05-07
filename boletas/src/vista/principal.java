@@ -13,22 +13,22 @@ import modelo.consultas;
  * @author gudiel
  */
 public class principal extends javax.swing.JFrame {
-    
+
     Icon iconoInfo = new ImageIcon(getClass().getResource("/images/icons8-ayuda-64.png"));
     static boolean maximized = false;
     int xMouse;
     int yMouse;
-    
+
     Date dateHoy = new Date();
     java.sql.Date fechaHoy = new java.sql.Date(dateHoy.getTime());
-    
+
     public principal() {
         initComponents();
-        
+
         this.fechaInicial.setDatoFecha(fechaHoy);
         this.fechaFinal.setDatoFecha(fechaHoy);
     }
-    
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -260,10 +260,10 @@ public class principal extends javax.swing.JFrame {
             }
         });
 
-        jLabel19.setFont(new java.awt.Font("Dialog", 0, 10)); // NOI18N
+        jLabel19.setFont(new java.awt.Font("Dialog", 0, 9)); // NOI18N
         jLabel19.setText("Credits: Gudiel Cobón");
 
-        jLabel20.setFont(new java.awt.Font("Dialog", 0, 10)); // NOI18N
+        jLabel20.setFont(new java.awt.Font("Dialog", 0, 9)); // NOI18N
         jLabel20.setText("Contact: gudielcobon@gmail.com");
 
         javax.swing.GroupLayout panelMenuLayout = new javax.swing.GroupLayout(panelMenu);
@@ -429,7 +429,7 @@ public class principal extends javax.swing.JFrame {
         fechaUso.setColorForeground(new java.awt.Color(25, 118, 210));
         fechaUso.setFormatoFecha("dd/MM/yyyy");
         fechaUso.setNextFocusableComponent(txtHora);
-        fechaUso.setPlaceholder("Fecha de uso");
+        fechaUso.setPlaceholder("(dd/mm/aaaa)");
 
         jLabel6.setText("Cliente:");
 
@@ -439,7 +439,7 @@ public class principal extends javax.swing.JFrame {
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
-        txtHora.setText("--:--  ");
+        txtHora.setText("--:--");
         txtHora.setCaretColor(new java.awt.Color(25, 118, 210));
         txtHora.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
         txtHora.setNextFocusableComponent(txtAtendio);
@@ -816,9 +816,10 @@ public class principal extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnRegistrosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrosActionPerformed
+        
         panelEscritorio.removeAll();
-        panelEscritorio.repaint();
         panelEscritorio.revalidate();
+        panelEscritorio.repaint();
         panelEscritorio.add(vistaRegistro);
         
         consultas con = new consultas();
@@ -826,35 +827,34 @@ public class principal extends javax.swing.JFrame {
     }//GEN-LAST:event_btnRegistrosActionPerformed
 
     private void btnCerrarVentanaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCerrarVentanaActionPerformed
-        
-        int x = JOptionPane.showConfirmDialog(null, "Salir del programa", "Exit", 1,HEIGHT, iconoInfo);
-        if(x == 0){
+
+        int x = JOptionPane.showConfirmDialog(null, "Salir del programa?", "Exit", 1, HEIGHT, iconoInfo);
+        if (x == 0) {
             System.exit(0);
         }
-        
+
     }//GEN-LAST:event_btnCerrarVentanaActionPerformed
 
     private void btnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarActionPerformed
         panelEscritorio.removeAll();
-        panelEscritorio.repaint();
         panelEscritorio.revalidate();
+        panelEscritorio.repaint();
+
         panelEscritorio.add(vistaAgregarRegistro);
-        
+
         btnGuardar.setText("GUARDAR");
+        txtBoleta.setEnabled(true);
     }//GEN-LAST:event_btnAgregarActionPerformed
 
     private void btnBusquedaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBusquedaActionPerformed
-        
-        vistaBusqueda.repaint();
-        vistaBusqueda.revalidate();
-        
+      
         txtBuscarBoleta.setText("");
-        
+
         panelEscritorio.removeAll();
-        panelEscritorio.repaint();
         panelEscritorio.revalidate();
+        panelEscritorio.repaint();
         panelEscritorio.add(vistaBusqueda);
-        
+
     }//GEN-LAST:event_btnBusquedaActionPerformed
 
     private void btnMaximizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMaximizarActionPerformed
@@ -886,7 +886,7 @@ public class principal extends javax.swing.JFrame {
 
     private void panelEncabezadoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_panelEncabezadoMouseClicked
         int clic = evt.getClickCount();
-        
+
         if (clic == 2) {
             if (maximized == false) {
                 this.setExtendedState(JFrame.MAXIMIZED_BOTH);

@@ -42,13 +42,13 @@ public class controladorPassword implements ActionListener {
             String pass = consulta.password(vistaPass.txtPassword.getText().trim());
             
             if(vistaPass.txtPassword.getText().equals("")){
-                JOptionPane.showMessageDialog(null, "Ingrese contraseña", "Atención", 0, iconoInfo);
+                JOptionPane.showMessageDialog(null, "Ingrese contraseña!", "Atención", 0, iconoInfo);
                 
             }else if (pass != null) {
                 consulta.ConfirmarBoleta(codigo);
                 vistaPass.dispose();
             }else{
-                JOptionPane.showMessageDialog(null, "Contraseña incorrecta", "Error", 0, iconoError);
+                JOptionPane.showMessageDialog(null, "Contraseña incorrecta!", "Error", 0, iconoError);
                 vistaPass.txtPassword.setText("");
             }
         }
