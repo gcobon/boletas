@@ -64,6 +64,7 @@ public class controladorRegistro implements ActionListener {
 
                     if (boleta != null) {
                         JOptionPane.showMessageDialog(null, "El numero de boleta que desea registrar ya existe!", "Atención", JOptionPane.INFORMATION_MESSAGE, iconoError);
+                        vista.txtBoleta.requestFocus();
                     } else {
                         modelo.setBanco((String) vista.cbxBanco.getSelectedItem());
                         modelo.setAtendio(vista.txtAtendio.getText().trim());
