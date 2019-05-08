@@ -25,7 +25,7 @@ public class controladorRegistro implements ActionListener {
     private final principal vista;
     private final modeloRegistro modelo;
     private final consultas consulta;
-    private Integer codigoMoficar;
+    private Integer codigoMoficar = null;
 
     Icon iconoError = new ImageIcon(getClass().getResource("/images/icons8-error-64.png"));
     Icon iconoCorrecto = new ImageIcon(getClass().getResource("/images/icons8-de-acuerdo-64.png"));
@@ -43,6 +43,7 @@ public class controladorRegistro implements ActionListener {
         this.vista.txtFactura.addActionListener(this);
         this.vista.txtBuscarBoleta.addActionListener(this);
         this.vista.menuModificar.addActionListener(this);
+        this.vista.menuModificarBoleta.addActionListener(this);
     }
 
     public void Iniciar() {
@@ -112,41 +113,53 @@ public class controladorRegistro implements ActionListener {
 //                if (boleta != null) {
 //                    JOptionPane.showMessageDialog(null, "El numero de boleta que desea registrar ya existe!", "Atención", JOptionPane.INFORMATION_MESSAGE, iconoError);
 //                } else {
-                    modelo.setBanco((String) vista.cbxBanco.getSelectedItem());
-                    modelo.setAtendio(vista.txtAtendio.getText().trim());
-                    modelo.setBoleta(vista.txtBoleta.getText().trim());
-                    modelo.setCliente(vista.txtCliente.getText().trim());
-                    modelo.setFactura(Integer.valueOf(vista.txtFactura.getText().trim()));
+                modelo.setBanco((String) vista.cbxBanco.getSelectedItem());
+                modelo.setAtendio(vista.txtAtendio.getText().trim());
+                modelo.setBoleta(vista.txtBoleta.getText().trim());
+                modelo.setCliente(vista.txtCliente.getText().trim());
+                modelo.setFactura(Integer.valueOf(vista.txtFactura.getText().trim()));
 
-                    Date date = vista.fechaUso.getDatoFecha(); //se obtiene la fecha ingresada en la vista
-                    SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");//se le da formato a la fecha ingresada
-                    String fecha = sdf.format(date);// se convierte a estring la fecha ingresada
+                Date date = vista.fechaUso.getDatoFecha(); //se obtiene la fecha ingresada en la vista
+                SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");//se le da formato a la fecha ingresada
+                String fecha = sdf.format(date);// se convierte a estring la fecha ingresada
 
-                    modelo.setFechaUso(fecha);
-                    modelo.setHora(vista.txtHora.getText());
-                    modelo.setTelefono(Integer.valueOf(vista.txtTelefono.getText().trim()));
-                    modelo.setValor(Float.parseFloat(vista.txtValor.getText().trim()));
+                modelo.setFechaUso(fecha);
+                modelo.setHora(vista.txtHora.getText());
+                modelo.setTelefono(Integer.valueOf(vista.txtTelefono.getText().trim()));
+                modelo.setValor(Float.parseFloat(vista.txtValor.getText().trim()));
 
-                    consulta.ModificarRegistro(modelo, codigoMoficar);// se llama al metodo modificar en la clase consulta
+                consulta.ModificarRegistro(modelo, codigoMoficar);// se llama al metodo modificar en la clase consulta
 
-                    vista.panelEscritorio.removeAll();//limpia el panel principal
-                    vista.panelEscritorio.repaint();
-                    vista.panelEscritorio.revalidate();// lo revalida
-                    vista.panelEscritorio.add(vista.vistaRegistro);// cambia al panel donde se ven los registros
+                vista.panelEscritorio.removeAll();//limpia el panel principal
+                vista.panelEscritorio.repaint();
+                vista.panelEscritorio.revalidate();// lo revalida
+                vista.panelEscritorio.add(vista.vistaRegistro);// cambia al panel donde se ven los registros
 
-                    consulta.MostrarRegistros(vista.tablaRegistros); //se hace la consulta para ver todos los datos agregados
+                consulta.MostrarRegistros(vista.tablaRegistros); //se hace la consulta para ver todos los datos agregados
 
-                    //------- limpia los campos del registro----------
-                    vista.cbxBanco.setSelectedIndex(0);
-                    vista.txtBoleta.setText("");
-                    vista.txtValor.setText("");
-                    vista.txtCliente.setText("");
-                    vista.txtFactura.setText("");
-                    vista.txtHora.setText("");
-                    vista.txtTelefono.setText("");
-                    vista.fechaUso.setDatoFecha(null);
-                    vista.txtAtendio.setText("");
-                    //-------------------------------------------------
+                //------- limpia los campos del registro----------
+                vista.cbxBanco.setSelectedIndex(0);
+                vista.txtBoleta.setText("");
+                vista.txtValor.setText("");
+                vista.txtCliente.setText("");
+                vista.txtFactura.setText("");
+                vista.txtHora.setText("");
+                vista.txtTelefono.setText("");
+                vista.fechaUso.setDatoFecha(null);
+                vista.txtAtendio.setText("");
+                //-------------------------------------------------
+                //-----------habilita todos los campos-------------
+                vista.btnGuardar.setText("GUARDAR");
+                vista.txtBoleta.setEnabled(true);
+                vista.cbxBanco.setEnabled(true);
+                vista.txtAtendio.setEnabled(true);
+                vista.txtCliente.setEnabled(true);
+                vista.txtFactura.setEnabled(true);
+                vista.txtHora.setEnabled(true);
+                vista.txtTelefono.setEnabled(true);
+                vista.txtValor.setEnabled(true);
+                vista.fechaUso.setEnabled(true);
+                //------------------------------------------------
 //                }
             }
 
@@ -158,51 +171,170 @@ public class controladorRegistro implements ActionListener {
 //                    JOptionPane.showMessageDialog(null, "El numero de boleta que desea registrar ya existe!", "Atención", JOptionPane.INFORMATION_MESSAGE, iconoError);
 //
 //                } else {
+                modelo.setBanco((String) vista.cbxBanco.getSelectedItem());
+                modelo.setAtendio(vista.txtAtendio.getText().trim());
+                modelo.setBoleta(vista.txtBoleta.getText().trim());
+                modelo.setCliente(vista.txtCliente.getText().trim());
+                modelo.setFactura(Integer.valueOf(vista.txtFactura.getText().trim()));
 
-                    modelo.setBanco((String) vista.cbxBanco.getSelectedItem());
-                    modelo.setAtendio(vista.txtAtendio.getText().trim());
-                    modelo.setBoleta(vista.txtBoleta.getText().trim());
-                    modelo.setCliente(vista.txtCliente.getText().trim());
-                    modelo.setFactura(Integer.valueOf(vista.txtFactura.getText().trim()));
+                Date date = vista.fechaUso.getDatoFecha(); //se obtiene la fecha ingresada en la vista
+                SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");//se le da formato a la fecha ingresada
+                String fecha = sdf.format(date);// se convierte a estring la fecha ingresada
 
-                    Date date = vista.fechaUso.getDatoFecha(); //se obtiene la fecha ingresada en la vista
-                    SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");//se le da formato a la fecha ingresada
-                    String fecha = sdf.format(date);// se convierte a estring la fecha ingresada
+                modelo.setFechaUso(fecha);
+                modelo.setHora(vista.txtHora.getText());
+                modelo.setTelefono(Integer.valueOf(vista.txtTelefono.getText().trim()));
+                modelo.setValor(Float.parseFloat(vista.txtValor.getText().trim()));
 
-                    modelo.setFechaUso(fecha);
-                    modelo.setHora(vista.txtHora.getText());
-                    modelo.setTelefono(Integer.valueOf(vista.txtTelefono.getText().trim()));
-                    modelo.setValor(Float.parseFloat(vista.txtValor.getText().trim()));
+                consulta.ModificarRegistro(modelo, codigoMoficar);// se llama al metodo modificar en la clase consulta
 
-                    consulta.ModificarRegistro(modelo, codigoMoficar);// se llama al metodo modificar en la clase consulta
+                vista.panelEscritorio.removeAll();//limpia el panel principal
+                vista.panelEscritorio.repaint();
+                vista.panelEscritorio.revalidate();// lo revalida
+                vista.panelEscritorio.add(vista.vistaBusqueda);// cambia al panel donde se ven los registros
 
-                    vista.panelEscritorio.removeAll();//limpia el panel principal
-                    vista.panelEscritorio.repaint();
-                    vista.panelEscritorio.revalidate();// lo revalida
-                    vista.panelEscritorio.add(vista.vistaBusqueda);// cambia al panel donde se ven los registros
+                Date dateIni = vista.fechaInicial.getDatoFecha(); //se obtiene la fecha inicial ingresada 
+                String fechaIni = sdf.format(dateIni);// se convierte a estring la fecha ingresada
 
-                    Date dateIni = vista.fechaInicial.getDatoFecha(); //se obtiene la fecha inicial ingresada 
-                    String fechaIni = sdf.format(dateIni);// se convierte a estring la fecha ingresada
+                Date dateFin = vista.fechaFinal.getDatoFecha(); //se obtiene la fecha final ingresada
+                String fechaFin = sdf.format(dateFin);// se convierte a estring la fecha ingresada
 
-                    Date dateFin = vista.fechaFinal.getDatoFecha(); //se obtiene la fecha final ingresada
-                    String fechaFin = sdf.format(dateFin);// se convierte a estring la fecha ingresada
+                consulta.BuscarRegistros(vista.tablaBusqueda, fechaIni, fechaFin);//muestra los registros buscados 
 
-                    consulta.BuscarRegistros(vista.tablaBusqueda, fechaIni, fechaFin);//muestra los registros buscados 
-
-                    //------- limpia los campos del registro----------
-                    vista.cbxBanco.setSelectedIndex(0);
-                    vista.txtBoleta.setText("");
-                    vista.txtValor.setText("");
-                    vista.txtCliente.setText("");
-                    vista.txtFactura.setText("");
-                    vista.txtHora.setText("");
-                    vista.txtTelefono.setText("");
-                    vista.fechaUso.setDatoFecha(null);
-                    vista.txtAtendio.setText("");
-                    //-------------------------------------------------
-                }
+                //------- limpia los campos del registro----------
+                vista.cbxBanco.setSelectedIndex(0);
+                vista.txtBoleta.setText("");
+                vista.txtValor.setText("");
+                vista.txtCliente.setText("");
+                vista.txtFactura.setText("");
+                vista.txtHora.setText("");
+                vista.txtTelefono.setText("");
+                vista.fechaUso.setDatoFecha(null);
+                vista.txtAtendio.setText("");
+                //-------------------------------------------------
+                //-----------habilita todos los campos-------------
+                vista.btnGuardar.setText("GUARDAR");
+                vista.txtBoleta.setEnabled(true);
+                vista.cbxBanco.setEnabled(true);
+                vista.txtAtendio.setEnabled(true);
+                vista.txtCliente.setEnabled(true);
+                vista.txtFactura.setEnabled(true);
+                vista.txtHora.setEnabled(true);
+                vista.txtTelefono.setEnabled(true);
+                vista.txtValor.setEnabled(true);
+                vista.fechaUso.setEnabled(true);
+                //------------------------------------------------
+            }
 //            }
 
+            if (vista.btnGuardar.getText().equals("MODIFICAR BOLETA")) {
+                if (vista.txtBoleta.getText().equals("")) {
+                    JOptionPane.showMessageDialog(null, "Debe ingresar número de boleta.!", "Atención", JOptionPane.INFORMATION_MESSAGE, iconoInfo);
+                } else {
+                    String boleta = consulta.Boleta(vista.txtBoleta.getText().trim());//consulta a la base de datos si existe en numero de boleta ingresada, sino existe retorna null.
+
+                    if (boleta != null) {
+                        JOptionPane.showMessageDialog(null, "El numero de boleta que desea registrar ya existe!", "Atención", JOptionPane.INFORMATION_MESSAGE, iconoError);
+                        vista.txtBoleta.requestFocus();
+                    } else {
+
+                        modelo.setBoleta(vista.txtBoleta.getText().trim());
+
+                        consulta.ModificarNumBoleta(modelo, codigoMoficar);// se llama al metodo guardar cliente en la clase consulta
+
+                        vista.panelEscritorio.removeAll();//limpia el panel principal
+                        vista.panelEscritorio.repaint();
+                        vista.panelEscritorio.revalidate();// lo revalida
+                        vista.panelEscritorio.add(vista.vistaRegistro);// cambia al panel donde se ven los registros
+
+                        consulta.MostrarRegistros(vista.tablaRegistros); //se hace la consulta para ver todos los datos agregados
+
+                        //------- limpia los campos del registro----------
+                        vista.cbxBanco.setSelectedIndex(0);
+                        vista.txtBoleta.setText("");
+                        vista.txtValor.setText("");
+                        vista.txtCliente.setText("");
+                        vista.txtFactura.setText("");
+                        vista.txtHora.setText("");
+                        vista.txtTelefono.setText("");
+                        vista.fechaUso.setDatoFecha(null);
+                        vista.txtAtendio.setText("");
+                        //-------------------------------------------------
+
+                        //-----------habilita todos los campos-------------
+                        vista.btnGuardar.setText("GUARDAR");
+                        vista.txtBoleta.setEnabled(true);
+                        vista.cbxBanco.setEnabled(true);
+                        vista.txtAtendio.setEnabled(true);
+                        vista.txtCliente.setEnabled(true);
+                        vista.txtFactura.setEnabled(true);
+                        vista.txtHora.setEnabled(true);
+                        vista.txtTelefono.setEnabled(true);
+                        vista.txtValor.setEnabled(true);
+                        vista.fechaUso.setEnabled(true);
+                        //------------------------------------------------
+                    }
+                }
+            }
+
+            if (vista.btnGuardar.getText().equals("MODIFICAR BOLETA EN BUSQUEDA")) {
+                if (vista.txtBoleta.getText().equals("")) {
+                    JOptionPane.showMessageDialog(null, "Debe ingresar número de boleta.!", "Atención", JOptionPane.INFORMATION_MESSAGE, iconoInfo);
+                } else {
+
+                    String boleta = consulta.Boleta(vista.txtBoleta.getText().trim());//consulta a la base de datos si existe en numero de boleta ingresada, sino existe retorna null.
+
+                    if (boleta != null) {
+                        JOptionPane.showMessageDialog(null, "El numero de boleta que desea registrar ya existe!", "Atención", JOptionPane.INFORMATION_MESSAGE, iconoError);
+                        vista.txtBoleta.requestFocus();
+                    } else {
+
+                        modelo.setBoleta(vista.txtBoleta.getText().trim());
+
+                        consulta.ModificarNumBoleta(modelo, codigoMoficar);// se llama al metodo guardar cliente en la clase consulta
+
+                        vista.panelEscritorio.removeAll();//limpia el panel principal
+                        vista.panelEscritorio.repaint();
+                        vista.panelEscritorio.revalidate();// lo revalida
+                        vista.panelEscritorio.add(vista.vistaBusqueda);// cambia al panel donde se ven los registros
+
+                        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");//se le da formato a la fecha ingresada
+
+                        Date dateIni = vista.fechaInicial.getDatoFecha(); //se obtiene la fecha inicial ingresada 
+                        String fechaIni = sdf.format(dateIni);// se convierte a estring la fecha ingresada
+
+                        Date dateFin = vista.fechaFinal.getDatoFecha(); //se obtiene la fecha final ingresada
+                        String fechaFin = sdf.format(dateFin);// se convierte a estring la fecha ingresada
+
+                        consulta.BuscarRegistros(vista.tablaBusqueda, fechaIni, fechaFin);//muestra los registros buscados 
+
+                        //------- limpia los campos del registro----------
+                        vista.cbxBanco.setSelectedIndex(0);
+                        vista.txtBoleta.setText("");
+                        vista.txtValor.setText("");
+                        vista.txtCliente.setText("");
+                        vista.txtFactura.setText("");
+                        vista.txtHora.setText("");
+                        vista.txtTelefono.setText("");
+                        vista.fechaUso.setDatoFecha(null);
+                        vista.txtAtendio.setText("");
+                        //-------------------------------------------------
+
+                        //-----------habilita todos los campos-------------
+                        vista.btnGuardar.setText("GUARDAR");
+                        vista.txtBoleta.setEnabled(true);
+                        vista.cbxBanco.setEnabled(true);
+                        vista.txtAtendio.setEnabled(true);
+                        vista.txtCliente.setEnabled(true);
+                        vista.txtFactura.setEnabled(true);
+                        vista.txtHora.setEnabled(true);
+                        vista.txtTelefono.setEnabled(true);
+                        vista.txtValor.setEnabled(true);
+                        vista.fechaUso.setEnabled(true);
+                        //------------------------------------------------
+                    }
+                }
+            }
         }
 
         if (vista.btnBuscar == e.getSource()) {
@@ -392,6 +524,98 @@ public class controladorRegistro implements ActionListener {
             }
         }
 
+        if (vista.menuModificarBoleta == e.getSource()) {
+
+            int filaR = vista.tablaRegistros.getSelectedRow();//obtiene el indice de la fila seleccionada en la tabla registros
+            int filaB = vista.tablaBusqueda.getSelectedRow();//obtiene el indice de la fila seleccionada en la tabla busqueda
+
+            if (filaR != -1) {//si se ha seleccionado una fila en la tabla registros se ejecuta la condicion
+
+                try {
+                    codigoMoficar = (Integer.parseInt((String) vista.tablaRegistros.getValueAt(filaR, 0)));
+                    vista.cbxBanco.setSelectedItem(vista.tablaRegistros.getValueAt(filaR, 3));
+                    vista.cbxBanco.setEnabled(false);
+                    vista.txtBoleta.setText((String) vista.tablaRegistros.getValueAt(filaR, 2));
+                    vista.txtBoleta.requestFocusInWindow();
+                    vista.txtValor.setText((String) vista.tablaRegistros.getValueAt(filaR, 4));
+                    vista.txtValor.setEnabled(false);
+                    vista.txtFactura.setText((String) vista.tablaRegistros.getValueAt(filaR, 5));
+                    vista.txtFactura.setEnabled(false);
+                    vista.txtCliente.setText((String) vista.tablaRegistros.getValueAt(filaR, 6));
+                    vista.txtCliente.setEnabled(false);
+                    vista.txtTelefono.setText((String) vista.tablaRegistros.getValueAt(filaR, 7));
+                    vista.txtTelefono.setEnabled(false);
+
+                    String date = (String) vista.tablaRegistros.getValueAt(filaR, 8);
+                    SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+                    java.util.Date parsedFecha;
+                    parsedFecha = sdf.parse(date);
+                    java.util.Date fecha = new java.util.Date(parsedFecha.getTime());
+
+                    vista.fechaUso.setDatoFecha(fecha);
+                    vista.fechaUso.setEnabled(false);
+                    vista.txtHora.setText((String) vista.tablaRegistros.getValueAt(filaR, 9));
+                    vista.txtHora.setEnabled(false);
+                    vista.txtAtendio.setText((String) vista.tablaRegistros.getValueAt(filaR, 10));
+                    vista.txtAtendio.setEnabled(false);
+
+                    vista.panelEscritorio.removeAll();
+                    vista.panelEscritorio.repaint();
+                    vista.panelEscritorio.revalidate();
+                    vista.panelEscritorio.add(vista.vistaAgregarRegistro);
+
+                    vista.btnGuardar.setText("MODIFICAR BOLETA");
+
+                } catch (ParseException ex) {
+                    Logger.getLogger(controladorRegistro.class.getName()).log(Level.SEVERE, null, ex);
+                }
+
+            } else if (filaB != -1) {//si se ha seleccionado una fila en la tabla busqueda se ejecuta la condicion
+
+                try {
+                    codigoMoficar = Integer.parseInt((String) vista.tablaBusqueda.getValueAt(filaB, 0));
+                    vista.cbxBanco.setSelectedItem(vista.tablaBusqueda.getValueAt(filaB, 3));
+                    vista.cbxBanco.setEnabled(false);
+                    vista.txtBoleta.setText((String) vista.tablaBusqueda.getValueAt(filaB, 2));
+                    vista.txtBoleta.requestFocus();
+                    vista.txtValor.setText((String) vista.tablaBusqueda.getValueAt(filaB, 4));
+                    vista.txtValor.setEnabled(false);
+                    vista.txtFactura.setText((String) vista.tablaBusqueda.getValueAt(filaB, 5));
+                    vista.txtFactura.setEnabled(false);
+                    vista.txtCliente.setText((String) vista.tablaBusqueda.getValueAt(filaB, 6));
+                    vista.txtCliente.setEnabled(false);
+                    vista.txtTelefono.setText((String) vista.tablaBusqueda.getValueAt(filaB, 7));
+                    vista.txtTelefono.setEnabled(false);
+
+                    String date = (String) vista.tablaBusqueda.getValueAt(filaB, 8);
+                    SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+                    java.util.Date parsedFecha;
+                    parsedFecha = sdf.parse(date);
+                    java.util.Date fecha = new java.util.Date(parsedFecha.getTime());
+
+                    vista.fechaUso.setDatoFecha(fecha);
+                    vista.fechaUso.setEnabled(false);
+                    vista.txtHora.setText((String) vista.tablaBusqueda.getValueAt(filaB, 9));
+                    vista.txtHora.setEnabled(false);
+                    vista.txtAtendio.setText((String) vista.tablaBusqueda.getValueAt(filaB, 10));
+                    vista.txtAtendio.setEnabled(false);
+
+                    vista.panelEscritorio.removeAll();
+                    vista.panelEscritorio.repaint();
+                    vista.panelEscritorio.revalidate();
+                    vista.panelEscritorio.add(vista.vistaAgregarRegistro);
+
+                    vista.btnGuardar.setText("MODIFICAR BOLETA EN BUSQUEDA");
+
+                } catch (ParseException ex) {
+                    Logger.getLogger(controladorRegistro.class.getName()).log(Level.SEVERE, null, ex);
+                }
+
+            } else {
+                JOptionPane.showMessageDialog(null, "Seleccione una registro", "Alerta", JOptionPane.ERROR_MESSAGE, iconoError);
+            }
+        }
+
         if (vista.txtFactura == e.getSource()) {
             vista.btnGuardar.doClick();
         }
@@ -403,7 +627,7 @@ public class controladorRegistro implements ActionListener {
         }
 
         if (vista.btnCancelarRegistro == e.getSource()) {
-            
+
             //------- limpia los campos del registro----------
             vista.cbxBanco.setSelectedIndex(0);
             vista.txtBoleta.setText("");
@@ -415,12 +639,25 @@ public class controladorRegistro implements ActionListener {
             vista.fechaUso.setDatoFecha(null);
             vista.txtAtendio.setText("");
             //-------------------------------------------------
-            
+
+            //-----------habilita todos los campos-------------
+            vista.btnGuardar.setText("GUARDAR");
+            vista.txtBoleta.setEnabled(true);
+            vista.cbxBanco.setEnabled(true);
+            vista.txtAtendio.setEnabled(true);
+            vista.txtCliente.setEnabled(true);
+            vista.txtFactura.setEnabled(true);
+            vista.txtHora.setEnabled(true);
+            vista.txtTelefono.setEnabled(true);
+            vista.txtValor.setEnabled(true);
+            vista.fechaUso.setEnabled(true);
+            //------------------------------------------------
+
             vista.panelEscritorio.removeAll();
             vista.panelEscritorio.repaint();
             vista.panelEscritorio.revalidate();
             vista.panelEscritorio.add(vista.panelBienvenida);
-            
+
         }
 
     }

@@ -1,6 +1,8 @@
 package vista;
 
 import java.awt.Frame;
+import java.awt.MouseInfo;
+import java.awt.Point;
 import java.util.Date;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
@@ -35,6 +37,7 @@ public class principal extends javax.swing.JFrame {
 
         popRegistros = new javax.swing.JPopupMenu();
         menuConfirmar = new javax.swing.JMenuItem();
+        menuModificarBoleta = new javax.swing.JMenuItem();
         menuModificar = new javax.swing.JMenuItem();
         menuEliminar = new javax.swing.JMenuItem();
         panelPrincipal = new javax.swing.JPanel();
@@ -99,8 +102,12 @@ public class principal extends javax.swing.JFrame {
         menuConfirmar.setText("Confirmar Depósito");
         popRegistros.add(menuConfirmar);
 
+        menuModificarBoleta.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/icons8-editar-32.png"))); // NOI18N
+        menuModificarBoleta.setText("Modificar Número De Boleta");
+        popRegistros.add(menuModificarBoleta);
+
         menuModificar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/icons8-actualizar-32.png"))); // NOI18N
-        menuModificar.setText("Modificar Registro");
+        menuModificar.setText("Modificar Datos ");
         popRegistros.add(menuModificar);
 
         menuEliminar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/icons8-eliminar-32.png"))); // NOI18N
@@ -844,6 +851,14 @@ public class principal extends javax.swing.JFrame {
 
         btnGuardar.setText("GUARDAR");
         txtBoleta.setEnabled(true);
+        cbxBanco.setEnabled(true);
+        txtAtendio.setEnabled(true);
+        txtCliente.setEnabled(true);
+        txtFactura.setEnabled(true);
+        txtHora.setEnabled(true);
+        txtTelefono.setEnabled(true);
+        txtValor.setEnabled(true);
+        fechaUso.setEnabled(true);
     }//GEN-LAST:event_btnAgregarActionPerformed
 
     private void btnBusquedaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBusquedaActionPerformed
@@ -872,11 +887,8 @@ public class principal extends javax.swing.JFrame {
     }//GEN-LAST:event_btnMinimizarActionPerformed
 
     private void panelEncabezadoMouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_panelEncabezadoMouseDragged
-        if (maximized) {
-            int x = evt.getXOnScreen();
-            int y = evt.getYOnScreen();
-            this.setLocation(x - xMouse, y - yMouse);
-        }
+        Point mueve = MouseInfo.getPointerInfo().getLocation();
+        this.setLocation(mueve.x - xMouse, mueve.y - yMouse);
     }//GEN-LAST:event_panelEncabezadoMouseDragged
 
     private void panelEncabezadoMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_panelEncabezadoMousePressed
@@ -972,6 +984,7 @@ public class principal extends javax.swing.JFrame {
     public static javax.swing.JMenuItem menuConfirmar;
     public static javax.swing.JMenuItem menuEliminar;
     public static javax.swing.JMenuItem menuModificar;
+    public static javax.swing.JMenuItem menuModificarBoleta;
     public static javax.swing.JPanel panelBienvenida;
     private rspanelgradiente.RSPanelGradiente panelEncabezado;
     public static javax.swing.JPanel panelEscritorio;

@@ -251,6 +251,32 @@ public class consultas extends conexionDB {
             JOptionPane.showMessageDialog(null, "Error al Modificar " + e, "Error", JOptionPane.ERROR_MESSAGE, iconoError);
         }
     }
+    
+    public void ModificarNumBoleta(modeloRegistro modelo, Integer codigo) {
+
+        sql = "UPDATE boletas.boleta set boleta = ? WHERE codigo = ?";
+
+        try {
+            conexion = Conectar();
+            PreparedStatement pst = conexion.prepareStatement(sql);
+
+            pst.setString(1, modelo.getBoleta());
+            pst.setInt(2, codigo);
+
+            int n = pst.executeUpdate();
+
+            if (n == 1) {
+                JOptionPane.showMessageDialog(null, "Modificado Correctamente", "Exito", JOptionPane.OK_OPTION, iconoCorrecto);
+            } else {
+                JOptionPane.showMessageDialog(null, "Error al Modificar", "Error", JOptionPane.ERROR_MESSAGE, iconoError);
+            }
+
+            conexion = Desconectar();
+
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "Error al Modificar " + e, "Error", JOptionPane.ERROR_MESSAGE, iconoError);
+        }
+    }
 
     public String Estado(String codigo) {
 
