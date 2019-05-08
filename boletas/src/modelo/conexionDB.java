@@ -13,11 +13,12 @@ public class conexionDB {
 
     private Connection con; //variable de tipo sql.Connection que recibe la conexion.
 
-    private final String url = "jdbc:mysql://192.168.10:3306/boletas";// variable constante que guarda la url de la conexion.
+    private final String url = "jdbc:mysql://192.168.1.10:3306/boletas";// variable constante que guarda la url de la conexion.
 
     public Connection Conectar() {
         try {
-//            Class.forName("com.mysql.jdbc.Driver");// 
+//            Class.forName("com.mysql.jdbc.Driver");//
+            DriverManager.setLoginTimeout(5);
             this.con = DriverManager.getConnection(this.url, "root", "40031412");//hace la conexion con la url, usuario y password de la base de datos
             System.out.println(this.con + " conectado");
 

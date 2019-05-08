@@ -26,7 +26,7 @@ public class principal extends javax.swing.JFrame {
 
     public principal() {
         initComponents();
-
+        setIconImage(new ImageIcon(getClass().getResource("../images/logo.jpeg")).getImage());
         this.fechaInicial.setDatoFecha(fechaHoy);
         this.fechaFinal.setDatoFecha(fechaHoy);
     }
