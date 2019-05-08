@@ -13,7 +13,7 @@ public class conexionDB {
 
     private Connection con; //variable de tipo sql.Connection que recibe la conexion.
 
-    private final String url = "jdbc:mysql://localhost:3306/boletas";// variable constante que guarda la url de la conexion.
+    private final String url = "jdbc:mysql://192.168.10:3306/boletas";// variable constante que guarda la url de la conexion.
 
     public Connection Conectar() {
         try {
