@@ -9,6 +9,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import modelo.consultas;
+import modelo.miRender;
 
 /**
  *
@@ -29,6 +30,11 @@ public class principal extends javax.swing.JFrame {
 
         this.fechaInicial.setDatoFecha(fechaHoy);
         this.fechaFinal.setDatoFecha(fechaHoy);
+        this.tablaRegistros.setShowGrid(true);
+        this.tablaRegistros.setDefaultRenderer(Object.class, new miRender());
+        this.tablaBusqueda.setDefaultRenderer(Object.class, new miRender());
+        
+        
     }
 
     @SuppressWarnings("unchecked")
@@ -122,7 +128,7 @@ public class principal extends javax.swing.JFrame {
 
         panelEncabezado.setBackground(new java.awt.Color(0, 0, 0));
         panelEncabezado.setColorPrimario(new java.awt.Color(25, 118, 210));
-        panelEncabezado.setColorSecundario(new java.awt.Color(133, 193, 233));
+        panelEncabezado.setColorSecundario(new java.awt.Color(25, 118, 210));
         panelEncabezado.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
             public void mouseDragged(java.awt.event.MouseEvent evt) {
                 panelEncabezadoMouseDragged(evt);
@@ -137,7 +143,7 @@ public class principal extends javax.swing.JFrame {
             }
         });
 
-        btnCerrarVentana.setBackground(new java.awt.Color(133, 193, 233));
+        btnCerrarVentana.setBackground(new java.awt.Color(25, 118, 210));
         btnCerrarVentana.setBorder(null);
         btnCerrarVentana.setText("X");
         btnCerrarVentana.setBorderPainted(false);
@@ -151,13 +157,12 @@ public class principal extends javax.swing.JFrame {
             }
         });
 
-        btnMaximizar.setBackground(new java.awt.Color(133, 193, 233));
+        btnMaximizar.setBackground(new java.awt.Color(25, 118, 210));
         btnMaximizar.setBorder(null);
         btnMaximizar.setText("^");
         btnMaximizar.setBorderPainted(false);
-        btnMaximizar.setColorHover(new java.awt.Color(248, 249, 249));
+        btnMaximizar.setColorHover(new java.awt.Color(25, 150, 210));
         btnMaximizar.setColorText(new java.awt.Color(204, 204, 204));
-        btnMaximizar.setColorTextHover(new java.awt.Color(0, 0, 0));
         btnMaximizar.setFocusPainted(false);
         btnMaximizar.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         btnMaximizar.addActionListener(new java.awt.event.ActionListener() {
@@ -166,13 +171,12 @@ public class principal extends javax.swing.JFrame {
             }
         });
 
-        btnMinimizar.setBackground(new java.awt.Color(133, 193, 233));
+        btnMinimizar.setBackground(new java.awt.Color(25, 118, 210));
         btnMinimizar.setBorder(null);
         btnMinimizar.setText("-");
         btnMinimizar.setBorderPainted(false);
-        btnMinimizar.setColorHover(new java.awt.Color(248, 249, 249));
+        btnMinimizar.setColorHover(new java.awt.Color(25, 150, 210));
         btnMinimizar.setColorText(new java.awt.Color(204, 204, 204));
-        btnMinimizar.setColorTextHover(new java.awt.Color(0, 0, 0));
         btnMinimizar.setFocusPainted(false);
         btnMinimizar.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         btnMinimizar.addActionListener(new java.awt.event.ActionListener() {
@@ -314,8 +318,8 @@ public class principal extends javax.swing.JFrame {
 
         panelBienvenida.setBackground(new java.awt.Color(255, 255, 255));
 
-        rSPanelGradiente1.setColorPrimario(new java.awt.Color(247, 220, 111));
-        rSPanelGradiente1.setColorSecundario(new java.awt.Color(142, 68, 173));
+        rSPanelGradiente1.setColorPrimario(new java.awt.Color(196, 233, 215));
+        rSPanelGradiente1.setColorSecundario(new java.awt.Color(50, 128, 176));
 
         jLabel15.setFont(new java.awt.Font("Dialog", 1, 36)); // NOI18N
         jLabel15.setForeground(new java.awt.Color(255, 255, 255));
@@ -612,14 +616,14 @@ public class principal extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        tablaRegistros.setColorBackgoundHead(new java.awt.Color(204, 204, 204));
+        tablaRegistros.setColorBackgoundHead(new java.awt.Color(133, 146, 158));
         tablaRegistros.setColorFilasForeground1(new java.awt.Color(25, 118, 210));
         tablaRegistros.setColorFilasForeground2(new java.awt.Color(25, 118, 210));
-        tablaRegistros.setColorForegroundHead(new java.awt.Color(0, 0, 0));
+        tablaRegistros.setColorSelBackgound(new java.awt.Color(25, 118, 210));
         tablaRegistros.setComponentPopupMenu(popRegistros);
-        tablaRegistros.setFuenteFilas(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
-        tablaRegistros.setFuenteFilasSelect(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        tablaRegistros.setFuenteHead(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
+        tablaRegistros.setFont(new java.awt.Font("Dialog", 0, 11)); // NOI18N
+        tablaRegistros.setFuenteFilas(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
+        tablaRegistros.setFuenteHead(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         tablaRegistros.setGrosorBordeFilas(0);
         tablaRegistros.setGrosorBordeHead(0);
         jScrollPane1.setViewportView(tablaRegistros);
@@ -691,15 +695,14 @@ public class principal extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        tablaBusqueda.setColorBackgoundHead(new java.awt.Color(204, 204, 204));
+        tablaBusqueda.setColorBackgoundHead(new java.awt.Color(133, 146, 158));
         tablaBusqueda.setColorFilasBackgound2(new java.awt.Color(215, 219, 221));
         tablaBusqueda.setColorFilasForeground1(new java.awt.Color(25, 118, 210));
         tablaBusqueda.setColorFilasForeground2(new java.awt.Color(25, 118, 210));
-        tablaBusqueda.setColorForegroundHead(new java.awt.Color(0, 0, 0));
         tablaBusqueda.setComponentPopupMenu(popRegistros);
-        tablaBusqueda.setFuenteFilas(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
-        tablaBusqueda.setFuenteFilasSelect(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        tablaBusqueda.setFuenteHead(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
+        tablaBusqueda.setFont(new java.awt.Font("Dialog", 0, 11)); // NOI18N
+        tablaBusqueda.setFuenteFilas(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
+        tablaBusqueda.setFuenteHead(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         tablaBusqueda.setGrosorBordeFilas(0);
         tablaBusqueda.setGrosorBordeHead(0);
         jScrollPane2.setViewportView(tablaBusqueda);
