@@ -1,6 +1,7 @@
 package vista;
 
 import java.awt.Frame;
+import java.awt.Image;
 import java.awt.MouseInfo;
 import java.awt.Point;
 import java.util.Date;
@@ -27,13 +28,12 @@ public class principal extends javax.swing.JFrame {
 
     public principal() {
         initComponents();
-
+        setIconImage(new ImageIcon(getClass().getResource("/images/logo.png")).getImage());
         this.fechaInicial.setDatoFecha(fechaHoy);
         this.fechaFinal.setDatoFecha(fechaHoy);
         this.tablaRegistros.setShowGrid(true);
         this.tablaRegistros.setDefaultRenderer(Object.class, new miRender());
         this.tablaBusqueda.setDefaultRenderer(Object.class, new miRender());
-        
         
     }
 
@@ -318,7 +318,7 @@ public class principal extends javax.swing.JFrame {
 
         panelBienvenida.setBackground(new java.awt.Color(255, 255, 255));
 
-        rSPanelGradiente1.setColorPrimario(new java.awt.Color(196, 233, 215));
+        rSPanelGradiente1.setColorPrimario(new java.awt.Color(255, 0, 255));
         rSPanelGradiente1.setColorSecundario(new java.awt.Color(50, 128, 176));
 
         jLabel15.setFont(new java.awt.Font("Dialog", 1, 36)); // NOI18N
