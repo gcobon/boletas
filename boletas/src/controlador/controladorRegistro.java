@@ -47,9 +47,11 @@ public class controladorRegistro implements ActionListener {
     }
 
     public void Iniciar() {
+        
         vista.setVisible(true);
         vista.cbxBanco.requestFocus();
         vista.setLocationRelativeTo(null);
+        vista.setResizable(true);
     }
 
     @Override

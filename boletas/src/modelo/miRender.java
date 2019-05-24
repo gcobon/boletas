@@ -43,7 +43,7 @@ public class miRender extends DefaultTableCellRenderer {
                 
             }else{
                 c.setForeground(new Color(25, 118, 210));
-                c.setFont(new Font("Tahoma", Font.PLAIN, 11));
+                c.setFont(new Font("Tahoma", Font.PLAIN, 10));
             }
         }
 
