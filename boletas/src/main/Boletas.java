@@ -21,6 +21,8 @@ public class Boletas {
         modeloRegistro modelo = new modeloRegistro();
         principal vista  = new principal();
         
+        cons.probarConexion();
+        
         controladorRegistro control = new controladorRegistro(vista, modelo, cons);
         control.Iniciar();
        

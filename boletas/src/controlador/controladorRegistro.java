@@ -468,9 +468,7 @@ public class controladorRegistro implements ActionListener {
 
                     String date = (String) vista.tablaRegistros.getValueAt(filaR, 8);
                     SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-                    java.util.Date parsedFecha;
-                    parsedFecha = sdf.parse(date);
-                    java.util.Date fecha = new java.util.Date(parsedFecha.getTime());
+                    Date fecha = sdf.parse(date);
 
                     vista.fechaUso.setDatoFecha(fecha);
                     vista.txtHora.setText((String) vista.tablaRegistros.getValueAt(filaR, 9));

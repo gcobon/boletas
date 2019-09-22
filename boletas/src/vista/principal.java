@@ -54,6 +54,7 @@ public class principal extends javax.swing.JFrame {
         btnBusqueda = new rojerusan.RSButtonHover();
         jLabel19 = new javax.swing.JLabel();
         jLabel20 = new javax.swing.JLabel();
+        jLabel21 = new javax.swing.JLabel();
         panelEscritorio = new javax.swing.JPanel();
         panelBienvenida = new javax.swing.JPanel();
         rSPanelGradiente1 = new rspanelgradiente.RSPanelGradiente();
@@ -151,7 +152,7 @@ public class principal extends javax.swing.JFrame {
             .addGroup(panelEncabezadoLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel17)
-                .addContainerGap(507, Short.MAX_VALUE))
+                .addContainerGap(542, Short.MAX_VALUE))
         );
         panelEncabezadoLayout.setVerticalGroup(
             panelEncabezadoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -169,7 +170,6 @@ public class principal extends javax.swing.JFrame {
         btnRegistros.setColorText(new java.awt.Color(153, 153, 153));
         btnRegistros.setColorTextHover(new java.awt.Color(25, 118, 210));
         btnRegistros.setFocusPainted(false);
-        btnRegistros.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         btnRegistros.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnRegistrosActionPerformed(evt);
@@ -185,7 +185,6 @@ public class principal extends javax.swing.JFrame {
         btnAgregar.setColorText(new java.awt.Color(153, 153, 153));
         btnAgregar.setColorTextHover(new java.awt.Color(25, 118, 210));
         btnAgregar.setFocusPainted(false);
-        btnAgregar.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         btnAgregar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnAgregarActionPerformed(evt);
@@ -201,7 +200,6 @@ public class principal extends javax.swing.JFrame {
         btnBusqueda.setColorText(new java.awt.Color(153, 153, 153));
         btnBusqueda.setColorTextHover(new java.awt.Color(25, 118, 210));
         btnBusqueda.setFocusPainted(false);
-        btnBusqueda.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         btnBusqueda.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnBusquedaActionPerformed(evt);
@@ -212,7 +210,10 @@ public class principal extends javax.swing.JFrame {
         jLabel19.setText("Credits: Gudiel Cobón");
 
         jLabel20.setFont(new java.awt.Font("Dialog", 0, 9)); // NOI18N
-        jLabel20.setText("Contact: gudielcobon@gmail.com");
+        jLabel20.setText("Contact:");
+
+        jLabel21.setFont(new java.awt.Font("Dialog", 0, 9)); // NOI18N
+        jLabel21.setText("gudielcobon@gmail.com");
 
         javax.swing.GroupLayout panelMenuLayout = new javax.swing.GroupLayout(panelMenu);
         panelMenu.setLayout(panelMenuLayout);
@@ -220,17 +221,19 @@ public class principal extends javax.swing.JFrame {
             panelMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelMenuLayout.createSequentialGroup()
                 .addGroup(panelMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, panelMenuLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jLabel20, javax.swing.GroupLayout.DEFAULT_SIZE, 169, Short.MAX_VALUE))
-                    .addComponent(btnRegistros, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                    .addComponent(btnBusqueda, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 150, Short.MAX_VALUE)
                     .addComponent(btnAgregar, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                    .addComponent(btnBusqueda, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
-                .addGap(0, 7, Short.MAX_VALUE))
+                    .addComponent(btnRegistros, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                .addGap(0, 0, Short.MAX_VALUE))
             .addGroup(panelMenuLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel19)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(panelMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(panelMenuLayout.createSequentialGroup()
+                        .addComponent(jLabel19)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(jLabel21, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel20, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
         panelMenuLayout.setVerticalGroup(
             panelMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -241,10 +244,12 @@ public class principal extends javax.swing.JFrame {
                 .addComponent(btnAgregar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(btnBusqueda, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 250, Short.MAX_VALUE)
                 .addComponent(jLabel19)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel20, javax.swing.GroupLayout.PREFERRED_SIZE, 8, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel21, javax.swing.GroupLayout.PREFERRED_SIZE, 8, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
 
@@ -276,7 +281,7 @@ public class principal extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(rSPanelGradiente1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel16, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel15, javax.swing.GroupLayout.DEFAULT_SIZE, 651, Short.MAX_VALUE))
+                    .addComponent(jLabel15, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         rSPanelGradiente1Layout.setVerticalGroup(
@@ -522,7 +527,7 @@ public class principal extends javax.swing.JFrame {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel10, javax.swing.GroupLayout.DEFAULT_SIZE, 651, Short.MAX_VALUE)
+                .addComponent(jLabel10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
@@ -535,9 +540,11 @@ public class principal extends javax.swing.JFrame {
 
         jScrollPane1.setBorder(null);
 
+        tablaRegistros.setAutoCreateRowSorter(true);
         tablaRegistros.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-
+                {null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null}
             },
             new String [] {
                 "Registro No.", "Fecha Registro", "Boleta", "Bco-Cuenta", "Valor", "Factura", "Cliente", "Teléfono", "Fecha Uso", "Hora Uso", "Responsable", "Estado"
@@ -551,16 +558,25 @@ public class principal extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
+        tablaRegistros.setAltoHead(60);
         tablaRegistros.setColorBackgoundHead(new java.awt.Color(133, 146, 158));
+        tablaRegistros.setColorFilasBackgound2(new java.awt.Color(255, 255, 255));
         tablaRegistros.setColorFilasForeground1(new java.awt.Color(25, 118, 210));
         tablaRegistros.setColorFilasForeground2(new java.awt.Color(25, 118, 210));
-        tablaRegistros.setColorSelBackgound(new java.awt.Color(25, 118, 210));
+        tablaRegistros.setColorSelBackgound(new java.awt.Color(38, 166, 154));
         tablaRegistros.setComponentPopupMenu(popRegistros);
         tablaRegistros.setFont(new java.awt.Font("Dialog", 0, 10)); // NOI18N
         tablaRegistros.setFuenteFilas(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
         tablaRegistros.setFuenteHead(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        tablaRegistros.setGridColor(new java.awt.Color(204, 204, 204));
         tablaRegistros.setGrosorBordeFilas(0);
         tablaRegistros.setGrosorBordeHead(0);
+        tablaRegistros.setIntercellSpacing(new java.awt.Dimension(0, 0));
+        tablaRegistros.setMultipleSeleccion(false);
+        tablaRegistros.setRowHeight(30);
+        tablaRegistros.setSelectionBackground(new java.awt.Color(38, 166, 154));
+        tablaRegistros.setShowGrid(false);
+        tablaRegistros.setShowHorizontalLines(true);
         jScrollPane1.setViewportView(tablaRegistros);
 
         javax.swing.GroupLayout vistaRegistroLayout = new javax.swing.GroupLayout(vistaRegistro);
@@ -568,7 +584,7 @@ public class principal extends javax.swing.JFrame {
         vistaRegistroLayout.setHorizontalGroup(
             vistaRegistroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(jScrollPane1)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 748, Short.MAX_VALUE)
         );
         vistaRegistroLayout.setVerticalGroup(
             vistaRegistroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -604,6 +620,7 @@ public class principal extends javax.swing.JFrame {
 
         jScrollPane2.setBorder(null);
 
+        tablaBusqueda.setAutoCreateRowSorter(true);
         tablaBusqueda.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -627,16 +644,21 @@ public class principal extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
+        tablaBusqueda.setAltoHead(60);
         tablaBusqueda.setColorBackgoundHead(new java.awt.Color(133, 146, 158));
-        tablaBusqueda.setColorFilasBackgound2(new java.awt.Color(215, 219, 221));
+        tablaBusqueda.setColorFilasBackgound2(new java.awt.Color(255, 255, 255));
         tablaBusqueda.setColorFilasForeground1(new java.awt.Color(25, 118, 210));
         tablaBusqueda.setColorFilasForeground2(new java.awt.Color(25, 118, 210));
+        tablaBusqueda.setColorSelBackgound(new java.awt.Color(38, 166, 154));
         tablaBusqueda.setComponentPopupMenu(popRegistros);
         tablaBusqueda.setFont(new java.awt.Font("Dialog", 0, 10)); // NOI18N
         tablaBusqueda.setFuenteFilas(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
         tablaBusqueda.setFuenteHead(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         tablaBusqueda.setGrosorBordeFilas(0);
         tablaBusqueda.setGrosorBordeHead(0);
+        tablaBusqueda.setIntercellSpacing(new java.awt.Dimension(0, 0));
+        tablaBusqueda.setRowHeight(25);
+        tablaBusqueda.setShowVerticalLines(false);
         jScrollPane2.setViewportView(tablaBusqueda);
 
         fechaInicial.setColorBackground(new java.awt.Color(25, 118, 210));
@@ -878,6 +900,7 @@ public class principal extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel20;
+    private javax.swing.JLabel jLabel21;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;

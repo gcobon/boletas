@@ -24,6 +24,11 @@ public class consultas extends conexionDB {
     Icon iconoQuestion = new ImageIcon(getClass().getResource("/images/icons8-ayuda-64.png"));
     //Icon iconoEliminado = new ImageIcon(getClass().getResource("/images/icons8-eliminar-32.png"));
 
+    public void probarConexion(){
+        conexion = Conectar();
+        conexion = Desconectar();
+    }
+    
     public void MostrarRegistros(RSTableMetro tablaRegistros) {
         modelo = (DefaultTableModel) tablaRegistros.getModel();
 

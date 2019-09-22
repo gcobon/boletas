@@ -18,15 +18,16 @@ public class conexionDB {
     public Connection Conectar() {
         try {
 //            Class.forName("com.mysql.jdbc.Driver");// 
-            DriverManager.setLoginTimeout(3);
+            DriverManager.setLoginTimeout(1);
             this.con = DriverManager.getConnection(this.url, "root", "40031412");//hace la conexion con la url, usuario y password de la base de datos
             int x = DriverManager.getLoginTimeout();
             System.out.println(this.con + " conectado " + x);
 
         } catch (SQLException e) {
-            System.out.println("error de conexion: " + this.con + " -- " + e); //imprime en consola si existe algun error de conexion
+            System.out.println("Error de conexion: " + this.con + " -- " + e); //imprime en consola si existe algun error de conexion
             if(this.con==null){
-                JOptionPane.showMessageDialog(null, "Error de conexion con la Base de Datos"+"\n"+"Ref: "+ e, "Error", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(null, "Error de conexión"+"\n\n"+"No se ha podido conectar con el servidor."+"\n"
+                        +"Compruebe la dirección IP del servidor y vuelva a intentarlo.", "Error", JOptionPane.ERROR_MESSAGE);
                 System.exit(0);
             }
         }
